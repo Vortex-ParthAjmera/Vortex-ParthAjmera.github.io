@@ -101,13 +101,13 @@ export default function FaceReveal() {
         >
           {/* BOTTOM LAYER: Real Face image */}
           <img 
-            src="/input_file_2.png"
+            src="/profile-real.png"
             alt="Parth Ajmera Real Face"
             className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none"
             id="avatar-real-image"
             referrerPolicy="no-referrer"
             onError={(e) => {
-              // Custom styled high-contrast SVG fallback in case attachment isn't found
+              // Fallback to high-contrast Unsplash image if profile-real.png is missing
               e.currentTarget.onerror = null;
               e.currentTarget.src = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=600";
             }}
@@ -136,7 +136,7 @@ export default function FaceReveal() {
           >
             {/* Swapped: TOP LAYER: Real Face shown only inside circle lens */}
             <img 
-              src="/input_file_2.png"
+              src="/profile-real.png"
               alt="Real Face Spotlight"
               className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none"
               id="avatar-real-lens-image"
@@ -157,14 +157,15 @@ export default function FaceReveal() {
             id="avatar-bg-mask-container"
           >
             <img 
-              src="/input_file_3.png"
+              src="/profile-mask.png"
               alt="Cyberpunk Mask"
               className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none"
               id="avatar-masked-base-image"
               referrerPolicy="no-referrer"
               onError={(e) => {
                 e.currentTarget.onerror = null;
-                e.currentTarget.src = "/input_file_0.png";
+                // Fallback to a styled dark placeholder or default cyberpunk styling
+                e.currentTarget.src = "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=600";
               }}
             />
           </div>
