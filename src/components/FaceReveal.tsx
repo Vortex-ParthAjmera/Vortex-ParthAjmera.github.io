@@ -99,76 +99,43 @@ export default function FaceReveal() {
           }}
           id="avatar-tilt-gantry"
         >
-          {/* BOTTOM LAYER: Real Face image */}
+          {/* BOTTOM LAYER: Cyberpunk Mask image (default visible background) */}
           <img 
-            src="/profile-real.png"
-            alt="Parth Ajmera Real Face"
+            src="/profile-mask.png"
+            alt="Cyberpunk Mask"
             className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none"
-            id="avatar-real-image"
+            id="avatar-masked-base-image"
             referrerPolicy="no-referrer"
             onError={(e) => {
-              // Fallback to high-contrast Unsplash image if profile-real.png is missing
+              // Fallback to a styled dark placeholder or default cyberpunk styling if profile-mask.png is missing
               e.currentTarget.onerror = null;
-              e.currentTarget.src = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=600";
+              e.currentTarget.src = "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=600";
             }}
           />
 
-          {/* TOP LAYER: Futuristic Cyber Masked Image, clipped on hover */}
+          {/* TOP LAYER: Real Face image, clipped on hover (lens spotlight) */}
           <motion.div 
             className="absolute inset-0 w-full h-full"
             style={{
               clipPath: isHovered 
                 ? `circle(80px at ${clipPercentX}% ${clipPercentY}%)` 
-                : 'circle(100% at 50% 50%)',
-              // Invert clip path on hover: we want to reveal the bottom image WHERE the cursor is.
-              // So, we clip the masked image OUT around the cursor so bottom image shows.
-              // SVG mask or css mask can do this, but with clipPath we can do basic circle masking.
-              // Since we want the bottom image (real face) to show AT the cursor, the TOP image (masked)
-              // must have a "hole" at the cursor. Or we can swap it: Top image = Real, Bottom image = Mask.
-              // Yes! If Top = Real face and is clipped to a circle at cursor, then ONLY the real face 
-              // is shown in the spotlight circle, and the rest is the cyberpunk mask from the bottom layers!
-              // This is exact spotlight reveal. That means:
-              // - BOTTOM LAYER: Cyberpunk Mask
-              // - TOP LAYER: Real Face (clipped to a circle at cursor)
-              // Let's swap the layers so this works perfectly!
+                : 'circle(0% at 50% 50%)',
             }}
-            id="avatar-masked-clipper"
+            id="avatar-real-clipper"
           >
-            {/* Swapped: TOP LAYER: Real Face shown only inside circle lens */}
             <img 
               src="/profile-real.png"
-              alt="Real Face Spotlight"
+              alt="Parth Ajmera Real Face"
               className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none"
-              id="avatar-real-lens-image"
+              id="avatar-real-image"
               referrerPolicy="no-referrer"
               onError={(e) => {
+                // Fallback to high-contrast Unsplash image if profile-real.png is missing
                 e.currentTarget.onerror = null;
                 e.currentTarget.src = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=600";
               }}
             />
           </motion.div>
-
-          {/* REAL BOTTOM LAYER: Cyberpunk mask (always fully visible, covered only by the top spotlight circle) */}
-          <div 
-            className="absolute inset-0 w-full h-full -z-10 bg-black"
-            style={{
-              clipPath: isHovered ? `polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)` : 'none'
-            }}
-            id="avatar-bg-mask-container"
-          >
-            <img 
-              src="/profile-mask.png"
-              alt="Cyberpunk Mask"
-              className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none"
-              id="avatar-masked-base-image"
-              referrerPolicy="no-referrer"
-              onError={(e) => {
-                e.currentTarget.onerror = null;
-                // Fallback to a styled dark placeholder or default cyberpunk styling
-                e.currentTarget.src = "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=600";
-              }}
-            />
-          </div>
 
           {/* Interactive HUD Sight Overlay inside 3D Perspective */}
           {isHovered && (
