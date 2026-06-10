@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Parth Ajmera — AI/ML Engineer & Systems Developer</title>
+    <style>
+      /* Instant Static Preloader Styles */
+      body {
+        margin: 0;
+        background-color: #050505;
+        overflow-x: hidden;
+      }
+      #root:empty {
+        background-color: #050505;
+        position: fixed;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+        flex-direction: column;
+      }
+      #root:empty::after {
+        content: "INIT_NEURAL_UPLINK...";
+        position: absolute;
+        bottom: 12%;
+        left: 50%;
+        transform: translateX(-50%);
+        font-family: monospace;
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.4);
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        animation: pulseText 1.5s ease-in-out infinite;
+      }
+      @keyframes pulseText {
+        0%, 100% { opacity: 0.3; }
+        50% { opacity: 0.8; }
+      }
+      
+      .main-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        max-width: 650px;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+      
+      .loader-container {
+        width: 100%;
+        height: auto;
+      }
+
+      .trace-bg {
+        fill: none;
+        stroke: rgba(255, 255, 255, 0.05);
+        stroke-width: 3px;
+        stroke-linecap: round;
+      }
+
+      .trace-flow {
+        fill: none;
+        stroke-width: 3.5px;
+        stroke-linecap: round;
+        stroke-dasharray: 60 140;
+        stroke-dashoffset: 200;
+        animation: flow 3s linear infinite;
+      }
+
+      @keyframes flow {
+        to {
+          stroke-dashoffset: -200;
+        }
+      }
+
+      .trace-flow.purple {
+        stroke: #c084fc;
+        filter: drop-shadow(0 0 6px #a855f7);
+      }
+      .trace-flow.blue {
+        stroke: #22d3ee;
+        filter: drop-shadow(0 0 6px #06b6d4);
+      }
+      .trace-flow.yellow {
+        stroke: #fde047;
+        filter: drop-shadow(0 0 6px #eab308);
+      }
+      .trace-flow.green {
+        stroke: #4ade80;
+        filter: drop-shadow(0 0 6px #22c55e);
+      }
+      .trace-flow.red {
+        stroke: #f87171;
+        filter: drop-shadow(0 0 6px #ef4444);
+      }
+      
+      /* Spark pulses along core paths */
+      @keyframes pulsate {
+        0%, 100% { opacity: 0.8; filter: drop-shadow(0 0 2px rgba(255,255,255,0.2)); }
+        50% { opacity: 1; filter: drop-shadow(0 0 8px rgba(255,255,255,0.9)); }
+      }
+      
+      .glow-chip {
+        animation: pulsate 2s infinite ease-in-out;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"><!-- Static Fallback Preloader rendered when root empty -->
+      <div class="main-container">
+        <div class="loader-container">
+          <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto;">
+            <defs>
+              <linearGradient id="chipGradient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#2d2d2d"></stop>
+                <stop offset="100%" stop-color="#0f0f0f"></stop>
+              </linearGradient>
+
+              <linearGradient id="textGradient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#eeeeee"></stop>
+                <stop offset="100%" stop-color="#888888"></stop>
+              </linearGradient>
+
+              <linearGradient id="pinGradient" x1="1" y1="0" x2="0" y2="0">
+                <stop offset="0%" stop-color="#bbbbbb"></stop>
+                <stop offset="50%" stop-color="#888888"></stop>
+                <stop offset="100%" stop-color="#555555"></stop>
+              </linearGradient>
+            </defs>
+
+            <g id="traces">
+              <path d="M100 100 H200 V210 H326" class="trace-bg"></path>
+              <path d="M100 100 H200 V210 H326" class="trace-flow purple"></path>
+
+              <path d="M80 180 H180 V230 H326" class="trace-bg"></path>
+              <path d="M80 180 H180 V230 H326" class="trace-flow blue"></path>
+
+              <path d="M60 260 H150 V250 H326" class="trace-bg"></path>
+              <path d="M60 260 H150 V250 H326" class="trace-flow yellow"></path>
+
+              <path d="M100 350 H200 V270 H326" class="trace-bg"></path>
+              <path d="M100 350 H200 V270 H326" class="trace-flow green"></path>
+
+              <path d="M700 90 H560 V210 H474" class="trace-bg"></path>
+              <path d="M700 90 H560 V210 H474" class="trace-flow blue"></path>
+
+              <path d="M740 160 H580 V230 H474" class="trace-bg"></path>
+              <path d="M740 160 H580 V230 H474" class="trace-flow green"></path>
+
+              <path d="M720 250 H590 V250 H474" class="trace-bg"></path>
+              <path d="M720 250 H590 V250 H474" class="trace-flow red"></path>
+
+              <path d="M680 340 H570 V270 H474" class="trace-bg"></path>
+              <path d="M680 340 H570 V270 H474" class="trace-flow yellow"></path>
+            </g>
+
+            <rect
+              x="330"
+              y="190"
+              width="140"
+              height="100"
+              rx="20"
+              ry="20"
+              fill="url(#chipGradient)"
+              stroke="#222"
+              stroke-width="3"
+              filter="drop-shadow(0 0 6px rgba(0,0,0,0.8))"
+              class="glow-chip"
+            ></rect>
+
+            <g>
+              <rect
+                x="322"
+                y="205"
+                width="8"
+                height="10"
+                fill="url(#pinGradient)"
+                rx="2"
+              ></rect>
+              <rect
+                x="322"
+                y="225"
+                width="8"
+                height="10"
+                fill="url(#pinGradient)"
+                rx="2"
+              ></rect>
+              <rect
+                x="322"
+                y="245"
+                width="8"
+                height="10"
+                fill="url(#pinGradient)"
+                rx="2"
+              ></rect>
+              <rect
+                x="322"
+                y="265"
+                width="8"
+                height="10"
+                fill="url(#pinGradient)"
+                rx="2"
+              ></rect>
+            </g>
+
+            <g>
+              <rect
+                x="470"
+                y="205"
+                width="8"
+                height="10"
+                fill="url(#pinGradient)"
+                rx="2"
+              ></rect>
+              <rect
+                x="470"
+                y="225"
+                width="8"
+                height="10"
+                fill="url(#pinGradient)"
+                rx="2"
+              ></rect>
+              <rect
+                x="470"
+                y="245"
+                width="8"
+                height="10"
+                fill="url(#pinGradient)"
+                rx="2"
+              ></rect>
+              <rect
+                x="470"
+                y="265"
+                width="8"
+                height="10"
+                fill="url(#pinGradient)"
+                rx="2"
+              ></rect>
+            </g>
+
+            <text
+              x="400"
+              y="245"
+              font-family="monospace, Courier, sans-serif"
+              font-size="20"
+              font-weight="bold"
+              fill="url(#textGradient)"
+              text-anchor="middle"
+              alignment-baseline="middle"
+              letter-spacing="1"
+            >
+              UPLINK
+            </text>
+
+            <circle cx="100" cy="100" r="5" fill="#4ade80" filter="drop-shadow(0 0 3px #4ade80)"></circle>
+            <circle cx="80" cy="180" r="5" fill="#22d3ee" filter="drop-shadow(0 0 3px #22d3ee)"></circle>
+            <circle cx="60" cy="260" r="5" fill="#fde047" filter="drop-shadow(0 0 3px #fde047)"></circle>
+            <circle cx="100" cy="350" r="5" fill="#c084fc" filter="drop-shadow(0 0 3px #c084fc)"></circle>
+
+            <circle cx="700" cy="90" r="5" fill="#22d3ee" filter="drop-shadow(0 0 3px #22d3ee)"></circle>
+            <circle cx="740" cy="160" r="5" fill="#4ade80" filter="drop-shadow(0 0 3px #4ade80)"></circle>
+            <circle cx="720" cy="250" r="5" fill="#f87171" filter="drop-shadow(0 0 3px #f87171)"></circle>
+            <circle cx="680" cy="340" r="5" fill="#fde047" filter="drop-shadow(0 0 3px #fde047)"></circle>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
